@@ -502,7 +502,7 @@ textarea {
 
 .main_image {
     align-items: stretch;
-    flex: 0 0 content;
+    flex: 0 0 50%;
     height: 100%;
     margin-right: 20px;
     position: relative;
@@ -632,7 +632,7 @@ textarea {
 }
 
 .information {
-    flex: 0 0 content;
+    flex: 0 0 50%;
     min-width: 50%;
 }
 
@@ -723,6 +723,10 @@ input.success {
 @media (max-width: 1000px) {
     .main_image, .logo {
         display: none;
+    }
+
+    .information {
+        flex: 0 0 100%;
     }
 
     .list_edit {
