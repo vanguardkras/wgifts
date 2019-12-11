@@ -14,4 +14,4 @@ use Illuminate\Http\Request;
 */
 
 //Payment handler route
-Route::get('activate', 'PaymentController@activate');
+Route::post('activate', 'PaymentController@activate');
