@@ -26,7 +26,7 @@ Route::resource('admin/suggestions', 'SuggestionController');
 Route::get('suggestion', 'SuggestionController@random');
 
 /** Authentication */
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 /** GiftLists */
 Route::get('lists', 'GiftListController@index');

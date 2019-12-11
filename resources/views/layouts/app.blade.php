@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name') }}</title>
+    @yield('meta', '')
+
+    <title>Выбор подарков {{ config('app.name') }}</title>
 
     {{-- Styles --}}
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">

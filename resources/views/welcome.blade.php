@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('meta')
+    <meta name="description" content="Сайт для создания списка подарков к празднику, чтобы потом поделиться им
+со своими знакомыми">
+    
+@endsection
+
 @section('content')
     <div class="info">
         <div class="main_image">
