@@ -21,7 +21,6 @@ gifts.forEach(function (gift) {
 
         ajax.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                console.log(this.responseText);
                 if (this.responseText === 'chosen') {
                     let error = document.createElement('div');
                     error.className = 'error';
