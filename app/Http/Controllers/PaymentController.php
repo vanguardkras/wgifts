@@ -15,10 +15,6 @@ class PaymentController extends Controller
      */
     public function activate(Request $request)
     {
-        $data = $request->all();
-        $data = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents('payment.txt', $data);
-
         if ($this->checkValidity($request)) {
             $list = GiftList::find($request->label);
             $list->activate();
