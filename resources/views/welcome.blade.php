@@ -3,7 +3,7 @@
 @section('content')
     <div class="info">
         <div class="main_image">
-            <img src="/images/background.png" alt="bg">
+            <img src="/images/background.webp" alt="bg">
         </div>
         <div class="information">
             <h1>Закажи себе подарок</h1>
