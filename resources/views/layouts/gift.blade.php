@@ -6,13 +6,13 @@
     <title>{{ config('app.name') }}</title>
 
     {{-- Styles --}}
-    <link href="{{ asset('css/list.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/list.css') }}" rel="stylesheet">
 
     {{-- Fonts --}}
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
     {{-- JS --}}
-    <script defer src="{{ asset('js/main.js') }}"></script>
+    <script defer src="{{ mix('/js/main.js') }}"></script>
 </head>
 <body>
 <main>

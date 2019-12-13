@@ -21,3 +21,6 @@ mix.js('resources/js/functions.js', 'public/js')
        'resources/css/preview.css'
    ], 'public/css/main.css');
 
+if (mix.inProduction()) {
+    mix.version();
+}

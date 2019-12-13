@@ -7,8 +7,8 @@
     <title>Admin-panel {{ config('app.name') }}</title>
 
     {{-- Styles --}}
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/main.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/admin.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>

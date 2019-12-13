@@ -50,13 +50,11 @@ class HomeController extends Controller
             return 'chosen';
         }
 
-        if ($list->activated) {
-            $gift->pick();
-            if ($request->has('comment')) {
-                $gift->comment($request->comment);
-            }
-            session()->push('chosen_lists', $list->id);
+        $gift->pick();
+        if ($request->has('comment')) {
+            $gift->comment($request->comment);
         }
+        session()->push('chosen_lists', $list->id);
 
         return view('gift', compact('gift', 'list'));
     }

@@ -9,12 +9,12 @@
     <title>Выбор подарков {{ config('app.name') }}</title>
 
     {{-- Styles --}}
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/main.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Marck+Script&display=swap" rel="stylesheet">
 
     {{-- JS --}}
-    <script defer src="/js/functions.js"></script>
+    <script defer src="{{ mix('/js/functions.js') }}"></script>
     {{-- VK share --}}
     <script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"></script>
 </head>
