@@ -29,4 +29,6 @@
             </form>
         </tr>
     </table>
+    Количество пользователей: {{ $usersQuantity }}<br>
+    Количество списков: {{ $listsQuantity }}
 @endsection('content')

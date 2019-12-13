@@ -21,15 +21,4 @@ class GiftListPolicy
     {
         return $user->id === $giftList->user_id;
     }
-
-    /**
-     * Determine wheather the gift list is outdated or not.
-     *
-     * @param GiftList $giftList
-     * @return bool
-     */
-    public function isNotOutdated(User $user, GiftList $giftList)
-    {
-        return !$giftList->isOutdated();
-    }
 }

@@ -11,7 +11,7 @@
                     <td>
                         <a
                             @if (!$list->isOutdated())
-                            href="/lists/{{ $list->id }}/edit"
+                            href="/lists/{{ $list->id }}/edit_list"
                             @endif
                             @isPaymentRequired
                             @if($list->activated)
@@ -29,7 +29,12 @@
                                    title="Копировать в буфер обмена">
                             <input class="share-icon material-icons edit" type="button" value="share"
                                    title="Поделиться">
-                            <a class="material-icons edit" target="__blank" href="{{ config('app.url').'/'.($list->domain) }}">remove_red_eye</a>
+                            @include('helpers.preview')
+                            <input class="eye material-icons edit" type="button" value="remove_red_eye"
+                                   title="Предпросмотр">
+                            <a class="material-icons edit"
+                               href="{{ config('app.url').'/lists/'.($list->id).'/edit' }}"
+                               title="Настройки списка">settings_applications</a>
                         @endif
                         <input onclick="return confirm('Вы уверены, что хотите удалить список?')"
                                class="material-icons delete"

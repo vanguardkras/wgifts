@@ -1,0 +1,49 @@
+iframe {
+    border: 10px solid black;
+    border-bottom: 70px solid black;
+    border-top: 50px solid black;
+    border-radius: 14px;
+    box-sizing: content-box;
+    height: 736px;
+    margin: 10% auto 0;
+    position: relative;
+    transform: scale(0.7);
+    transform-origin: top;
+    width: 414px;
+}
+
+input[type="button"].close_preview {
+    color: white;
+    display: none;
+    font-size: 35px;
+    opacity: 0;
+    position: fixed;
+    text-shadow: 0 0 10px black;
+    transition: opacity .7s ease-out;
+    right: 10px;
+    top: 10px;
+    z-index: 20;
+}
+
+.preview {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    transition: opacity .7s ease-out;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+
+@media (max-width: 450px) {
+    iframe {
+        border: none;
+        height: 568px;
+        margin: 10% 0 0;
+        width: 100%;
+    }
+}

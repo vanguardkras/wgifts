@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Background;
+use App\GiftList;
 use App\Http\Controllers\Controller;
 use App\Setting;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -78,8 +80,11 @@ class AdminController extends Controller
     {
         $price = Setting::getPrice();
         $paymentRequired = Setting::isPaymentRequired();
+        $usersQuantity = User::count() - 1;
+        $listsQuantity = GiftList::count() - 1;
 
-        return view('admin.settings', compact(['price', 'paymentRequired']));
+        $data = ['price', 'paymentRequired', 'usersQuantity', 'listsQuantity'];
+        return view('admin.settings', compact($data));
     }
 
     /**

@@ -10,16 +10,6 @@ use Illuminate\Support\Facades\Log;
 class GiftController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('verified');
-    }
-
-    /**
      * Store a newly created gift.
      *
      * @param Request $request
@@ -40,6 +30,28 @@ class GiftController extends Controller
     }
 
     /**
+     * Store a newly created gift for an unauthorized user.
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function storeToSession(Request $request)
+    {
+        $list = session('created');
+
+        $gift = new \stdClass;
+        $gift->name = $request->name;
+        $gift->picked = false;
+        $gift->comment = '';
+
+        $list->gifts[] = $gift;
+
+        session()->put('created', $list);
+
+        return 'OK';
+    }
+
+    /**
      * Update the gift name.
      *
      * @param Request $request
@@ -53,8 +65,19 @@ class GiftController extends Controller
 
         $gift->name = $request->name;
         $gift->save();
+    }
 
-        return redirect('/lists/'.$gift->giftList->id.'/edit');
+    /**
+     * Update gift for unauthorized users.
+     *
+     * @param Request $request
+     */
+    public function updateInSession(Request $request)
+    {
+        $list = session('created');
+        $list->gifts[$request->id]->name = $request->name;
+
+        session()->put('created', $list);
     }
 
     /**
@@ -71,6 +94,14 @@ class GiftController extends Controller
 
         $gift->delete();
 
+        return 'OK';
+    }
+
+    public function destroyInSession(Request $request, $id)
+    {
+        $list = session('created');
+        unset($list->gifts[$request->id]);
+        session()->put('created', $list);
         return 'OK';
     }
 }

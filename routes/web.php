@@ -30,6 +30,7 @@ Auth::routes();
 
 /** GiftLists */
 Route::get('lists', 'GiftListController@index');
+Route::get('lists/{gift_list}/edit_list', 'GiftListController@editList');
 Route::get('lists/{gift_list}/edit', 'GiftListController@edit');
 Route::get('lists/{gift_list}', 'GiftListController@giftsIndex');
 Route::patch('lists/{gift_list}', 'GiftListController@update');
@@ -43,4 +44,10 @@ Route::patch('gift/{gift}', 'GiftController@update');
 Route::delete('gift/{gift}', 'GiftController@destroy');
 
 /** Public routes */
+Route::post('create', 'GiftListController@storeToSession');
+Route::post('create_gift', 'GiftController@storeToSession');
+Route::patch('update_gift', 'GiftController@updateInSession');
+Route::delete('delete_gift/{id}', 'GiftController@destroyInSession');
+Route::get('get_gifts', 'GiftListController@giftsFromSession');
+Route::get('edit', 'GiftListController@editToSession');
 Route::get('{gift_list_domain}', 'HomeController@showList');

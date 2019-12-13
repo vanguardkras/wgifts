@@ -17,7 +17,7 @@
 <body>
 <main>
     <h6><a href="{{ config('app.url') }}" target="_blank">{{ config('app.name') }}</a></h6>
-    @yield('content')
+    {{ $slot }}
 </main>
 </body>
 </html>

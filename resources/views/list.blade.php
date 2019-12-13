@@ -1,6 +1,9 @@
-@extends('layouts.gift')
-
-@section('content')
+@component('layouts.gift')
+    @if(isset($no_action))
+        <script>
+            let no_action = true;
+        </script>
+    @endif
     <div>
         <img src="{{ asset('storage/backgrounds/'.$list->background->file) }}" alt="фон">
     </div>
@@ -16,4 +19,4 @@
             @endforeach
         </table>
     </div>
-@endsection
+@endcomponent

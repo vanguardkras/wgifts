@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Gift;
+use App\GiftList;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -22,6 +24,13 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    /**
+     * First list ID for users created lists without registration.
+     *
+     * @var int
+     */
+    protected $firstListId;
 
     /**
      * Where to redirect users after registration.
@@ -63,9 +72,61 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         /** @noinspection PhpUndefinedMethodInspection */
-        return User::create([
+        $user = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ((session()->has('created'))) {
+            $this->createListFromSession($user);
+        }
+
+        return $user;
+    }
+
+    /**
+     * Redirect after registration logic.
+     *
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        if (isset($this->firstListId)) {
+            return 'lists/'.$this->firstListId.'/edit_list';
+        }
+
+        return $this->redirectTo;
+    }
+
+    /**
+     * Create a gifts list for just authorized users.
+     *
+     * @param User $user
+     */
+    private function createListFromSession(User $user)
+    {
+        $session = session('created');
+        $list = new GiftList;
+
+
+        $list->user_id = $user->id;
+        $list->domain = $session->domain;
+        $list->title = $session->title;
+        $list->background_id = $session->background_id;
+        $list->information = $session->information;
+        $list->date = $session->date;
+        $list->comment_opt = $session->comment_opt;
+        $list->save();
+
+        foreach ($session->gifts as $sgift) {
+            $gift = new Gift;
+            $gift->gift_list_id = $list->id;
+            $gift->name = $sgift->name;
+            $gift->save();
+        }
+
+        $this->firstListId = $list->id;
+
+        session()->forget('created');
     }
 }

@@ -1,4 +1,4 @@
-<td class="{{ $gift->picked ? 'inactive' : '' }}">{{ $gift->name }}</td>
+<td class="{{ $gift->picked ? 'inactive' : '' }} gift-name">{{ $gift->name }}</td>
 @if ($list->comment_opt && !$gift->picked)
     <td class="comment">
         <input type="text" name="comment" value="{{ $gift->comment }}"

@@ -87,6 +87,6 @@ class GiftList extends Model
     {
         $date = Carbon::parse($this->date);
 
-        return $date <= Carbon::tomorrow();
+        return $date < Carbon::tomorrow();
     }
 }

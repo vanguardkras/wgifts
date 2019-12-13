@@ -3,6 +3,7 @@
 @section('content')
     <form class="auth" method="POST" action="{{ route('register') }}">
         @csrf
+        <p>Для сохранения и размещения ваших списков необходимо пройти простую регистрацию</p>
         <h2>Регистрация</h2>
 
         <div>

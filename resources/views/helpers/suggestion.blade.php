@@ -1,7 +1,9 @@
-<div class="suggestion">
-    <h2>Необычный подарок</h2>
-    <input id="close_suggestion" class="material-icons" type="button" value="close"
-           title="Закрыть">
-    <button class="button add">Добавить</button>
-    <button class="button another">Другой</button>
+<div class="suggestion_box">
+    <div class="suggestion">
+        <input id="close_suggestion" class="material-icons" type="button" value="close"
+               title="Закрыть">
+        <h2></h2>
+        <button class="button add">Добавить</button>
+        <button class="button another">Другой</button>
+    </div>
 </div>

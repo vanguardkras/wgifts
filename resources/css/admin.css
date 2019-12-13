@@ -1,0 +1,27 @@
+table {
+    border-collapse: collapse;
+    margin: 10px auto;
+}
+
+th, td {
+    padding: 5px;
+}
+
+td {
+    background-color: #259Cb2;
+}
+
+th {
+    background-color: var(--extra-dark);
+}
+
+tr:nth-child(2n) td {
+    background-color: #65dCf2;
+}
+
+input[type="radio"] {
+    position: inherit;
+    opacity: 1;
+    width: 13px;
+    height: 13px;
+}

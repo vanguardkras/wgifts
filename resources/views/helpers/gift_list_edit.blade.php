@@ -1,7 +1,7 @@
-@foreach($giftList->gifts as $gift)
+@foreach($giftList->gifts as $key => $gift)
     <tr>
-        <input type="hidden" name="id" value="{{ $gift->id }}">
-        <td>{{ $loop->iteration }}</td>
+        <input type="hidden" name="id" value="{{ Auth::check() ? $gift->id : $key }}">
+        <td>{{ $loop->iteration }}.</td>
         <td>
             <input class="gift{{ $gift->picked ? ' success' : '' }}" type="text" name="name"
                    value="{{ $gift->name }}"{{ $gift->picked ? ' disabled' : '' }}>

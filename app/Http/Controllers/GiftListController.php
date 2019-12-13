@@ -3,25 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Background;
-use App\Gift;
 use App\GiftList;
 use App\Setting;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class GiftListController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('verified');
-    }
-
     /**
      * Display gift lists.
      *
@@ -29,6 +17,10 @@ class GiftListController extends Controller
      */
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+
         $lists = Auth::user()->giftLists;
 
         return view('lists', compact('lists'));
@@ -61,6 +53,18 @@ class GiftListController extends Controller
     }
 
     /**
+     * Get gift list for unauthorized users.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function giftsFromSession()
+    {
+        $giftList = session('created');
+
+        return view('helpers.gift_list_edit', compact('giftList'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
@@ -77,6 +81,24 @@ class GiftListController extends Controller
     }
 
     /**
+     * Create a list for unauthorized users.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function storeToSession(Request $request)
+    {
+        $data = $this->validateForm($request, true);
+        $list = session('created');
+
+        $data['gifts'] = $list ? $list->gifts : [];
+
+        session(['created' => (object) $data]);
+
+        return redirect('edit');
+    }
+
+    /**
      * Show the form for editing the specified gift list.
      *
      * @param GiftList $giftList
@@ -86,17 +108,51 @@ class GiftListController extends Controller
     public function edit(GiftList $giftList)
     {
         $this->authorize('userAllowed', $giftList);
-        $this->authorize('isNotOutdated', $giftList);
+
+        if ($giftList->isOutdated()) {
+            abort('404');
+        }
 
         $backgrounds = Background::orderBy('name')->get();
 
         $price = Setting::getPrice();
 
-        return view('list_edit', compact(
+        return view('list_settings_edit', compact(
             'giftList',
             'backgrounds',
             'price'
         ));
+    }
+
+    /**
+     * Edit gifts for the current gift list.
+     *
+     * @param GiftList $giftList
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function editList(GiftList $giftList)
+    {
+        $this->authorize('userAllowed', $giftList);
+        if ($giftList->isOutdated()) {
+            abort('404');
+        }
+
+        $price = Setting::getPrice();
+
+        return view('list_edit', compact('giftList', 'price'));
+    }
+
+    /**
+     * Gifts edit page for unauthorized users.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editToSession()
+    {
+        $giftList = session('created');
+
+        return view('list_edit', compact('giftList'));
     }
 
     /**
@@ -110,7 +166,10 @@ class GiftListController extends Controller
     public function update(Request $request, GiftList $giftList)
     {
         $this->authorize('userAllowed', $giftList);
-        $this->authorize('isNotOutdated', $giftList);
+
+        if ($giftList->isOutdated()) {
+            abort('404');
+        }
 
         $data = $this->validateForm($request);
 
