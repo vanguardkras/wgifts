@@ -2,7 +2,8 @@
 @if ($list->comment_opt && !$gift->picked)
     <td class="comment">
         <input type="text" name="comment" value="{{ $gift->comment }}"
-               placeholder="Ваше имя">
+               placeholder="Ваше имя"
+               maxlength="10">
     </td>
 @endif
 <td>
