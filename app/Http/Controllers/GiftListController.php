@@ -77,7 +77,7 @@ class GiftListController extends Controller
 
         $newGift = GiftList::create($data);
 
-        return redirect('/lists/'.$newGift->id.'/edit');
+        return redirect('/lists/'.$newGift->id.'/edit_list');
     }
 
     /**
@@ -92,6 +92,7 @@ class GiftListController extends Controller
         $list = session('created');
 
         $data['gifts'] = $list ? $list->gifts : [];
+        $data['activated'] = false;
 
         session(['created' => (object) $data]);
 

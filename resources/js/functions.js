@@ -12,20 +12,40 @@ let close_preview = document.querySelector('.close_preview');
 
 reloadGiftList();
 
+let reload = false;
+
+//Check if you need to show preview right away
+let urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('reload') === '1') {
+    loadPreview();
+}
+
 //Preview
 preview.forEach(function (elem) {
     elem.addEventListener('click', function () {
-        let block = this.parentNode.querySelector('.preview');
-        block.style.display = 'block';
-        close_preview.style.display = 'block';
-        setTimeout(function () {
-            block.style.opacity = '1';
-        }, 200);
-        setTimeout(function () {
-            close_preview.style.opacity = '1';
-        }, 200);
+        if (reload) {
+            document.location.href = '?reload=1';
+            return;
+        }
+
+        loadPreview(elem);
     });
 });
+
+
+function loadPreview(elem = false) {
+    let block = elem ? elem.parentNode : document;
+    let preview_block = block.querySelector('.preview');
+
+    preview_block.style.display = 'block';
+    close_preview.style.display = 'block';
+    setTimeout(function () {
+        preview_block.style.opacity = '1';
+    }, 200);
+    setTimeout(function () {
+        close_preview.style.opacity = '1';
+    }, 200);
+}
 
 //Close preview
 if (close_preview !== null) {
@@ -151,6 +171,7 @@ function addGift(gift_name) {
                     if (this.readyState === 4 && this.status === 200) {
                         table.innerHTML = this.responseText;
                         reloadGiftList();
+                        reload = true;
                     }
                 }
         }
@@ -208,6 +229,7 @@ function reloadGiftList() {
             ajax.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200 && this.responseText === 'OK') {
                     gift.remove();
+                    reload = true;
                 }
             };
         });
@@ -232,6 +254,7 @@ function reloadGiftList() {
             ajax.open('POST', address, true);
             ajax.setRequestHeader('X-CSRF-TOKEN', csrf);
             ajax.send(formData);
+            reload = true;
         });
     });
 }

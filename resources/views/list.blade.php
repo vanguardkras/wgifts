@@ -5,14 +5,14 @@
         </script>
     @endif
     <div>
-        <img src="{{ asset('storage/backgrounds/'.$list->background->file) }}" alt="фон">
+        <img src="{{ asset('storage/backgrounds/'.\App\Background::find($list->background_id)->file) }}" alt="фон">
     </div>
     <h1>{{ $list->title }}</h1>
-    <h2>{{ $list->beautifulDate() }}</h2>
+    <h2>{{ date('d.m.Y', strtotime($list->date)) }}</h2>
     <p>{{ $list->information }}</p>
     <div>
         <table>
-            @foreach($list->gifts as $gift)
+            @foreach($list->gifts as $key => $gift)
                 <tr>
                     @include('gift')
                 </tr>

@@ -9,7 +9,7 @@
     @if ($gift->picked)
         <span class="green">&#10004;</span>
     @else
-            <input type="hidden" name="id" value="{{ $gift->id }}">
+            <input type="hidden" name="id" value="{{ $gift->id ?? $key }}">
             <input type="button" value="Выбрать">
     @endif
 </td>
