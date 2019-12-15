@@ -24,5 +24,6 @@
     @yield('content')
 </main>
 @include('layouts.footer')
+@include('helpers.yandex_metric')
 </body>
 </html>
