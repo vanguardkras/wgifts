@@ -10,9 +10,7 @@
                 <tr>
                     <td>
                         <a
-                            @if (!$list->isOutdated())
                             href="/lists/{{ $list->id }}/edit_list"
-                            @endif
                             @isPaymentRequired
                             @if($list->activated)
                             class="activated"
@@ -23,19 +21,17 @@
                         </a>
                     </td>
                     <td>
-                        @if (!$list->isOutdated())
-                            <input type="text" value="{{ config('app.url').'/'.($list->domain) }}">
-                            <input class="copy-icon material-icons edit" type="button" value="file_copy"
-                                   title="Копировать в буфер обмена">
-                            <input class="share-icon material-icons edit" type="button" value="share"
-                                   title="Поделиться">
-                            @include('helpers.preview')
-                            <input class="eye material-icons edit" type="button" value="remove_red_eye"
-                                   title="Предпросмотр">
-                            <a class="material-icons edit"
-                               href="{{ config('app.url').'/lists/'.($list->id).'/edit' }}"
-                               title="Настройки списка">settings_applications</a>
-                        @endif
+                        <input type="text" value="{{ config('app.url').'/'.($list->domain) }}">
+                        <input class="copy-icon material-icons edit" type="button" value="file_copy"
+                               title="Копировать в буфер обмена">
+                        <input class="share-icon material-icons edit" type="button" value="share"
+                               title="Поделиться">
+                        @include('helpers.preview')
+                        <input class="eye material-icons edit" type="button" value="remove_red_eye"
+                               title="Предпросмотр">
+                        <a class="material-icons edit"
+                           href="{{ config('app.url').'/lists/'.($list->id).'/edit' }}"
+                           title="Настройки списка">settings_applications</a>
                         <input onclick="return confirm('Вы уверены, что хотите удалить список?')"
                                class="material-icons delete"
                                type="submit" value="delete_forever" title="Удалить">

@@ -30,7 +30,7 @@ class HomeController extends Controller
         $list = GiftList::getByDomain($giftListDomain);
         $payment = Setting::isPaymentRequired();
 
-        return ($payment && !$list->activated) || $list->isOutdated() ?
+        return ($payment && !$list->activated) ?
             abort('404') :
             view('list', compact('list'));
     }

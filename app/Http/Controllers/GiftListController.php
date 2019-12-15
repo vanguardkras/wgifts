@@ -110,10 +110,6 @@ class GiftListController extends Controller
     {
         $this->authorize('userAllowed', $giftList);
 
-        if ($giftList->isOutdated()) {
-            abort('404');
-        }
-
         $backgrounds = Background::orderBy('name')->get();
 
         $price = Setting::getPrice();
@@ -135,9 +131,6 @@ class GiftListController extends Controller
     public function editList(GiftList $giftList)
     {
         $this->authorize('userAllowed', $giftList);
-        if ($giftList->isOutdated()) {
-            abort('404');
-        }
 
         $price = Setting::getPrice();
 
@@ -167,10 +160,6 @@ class GiftListController extends Controller
     public function update(Request $request, GiftList $giftList)
     {
         $this->authorize('userAllowed', $giftList);
-
-        if ($giftList->isOutdated()) {
-            abort('404');
-        }
 
         $data = $this->validateForm($request);
 
@@ -210,7 +199,7 @@ class GiftListController extends Controller
         $data = $request->validate([
             'domain' => 'required|alpha_dash|max:30'.$unique,
             'title' => 'required|max:100',
-            'date' => 'required|date|after:today',
+            'date' => 'date|after:today',
             'background_id' => 'required|numeric',
             'information' => 'max:1000',
             'comment_opt' => 'boolean',

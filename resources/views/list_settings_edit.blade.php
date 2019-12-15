@@ -31,7 +31,6 @@
                     <span class="help" help="{{ __('help.title') }}">?</span>
                 </th>
                 <td>
-                    <input type="hidden" name="date" value="{{ $giftList->date }}">
                     <input class="{{ $errors->has('title') ? 'alert' : '' }}" type="text" name="title"
                            value="{{ $giftList->title }}" required>
                     @error('title')
