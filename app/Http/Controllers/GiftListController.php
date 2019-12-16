@@ -75,7 +75,16 @@ class GiftListController extends Controller
         $data = $this->validateForm($request, true);
         $data['user_id'] = Auth::id();
 
+        if (!$request->has('domain')) {
+
+        }
+
         $newGift = GiftList::create($data);
+
+        if (!$request->has('domain')) {
+            $newGift->domain = 'id'.$newGift->id;
+            $newGift->save();
+        }
 
         return redirect('/lists/'.$newGift->id.'/edit_list');
     }
@@ -92,6 +101,7 @@ class GiftListController extends Controller
         $list = session('created');
 
         $data['gifts'] = $list ? $list->gifts : [];
+        $data['domain'] = 'id';
         $data['activated'] = false;
 
         session(['created' => (object) $data]);
@@ -197,7 +207,7 @@ class GiftListController extends Controller
         $unique = $new ? '|unique:gift_lists,domain' : '';
 
         $data = $request->validate([
-            'domain' => 'required|alpha_dash|max:30'.$unique,
+            'domain' => 'alpha_dash|max:30'.$unique,
             'title' => 'required|max:100',
             'date' => 'date|after:today',
             'background_id' => 'required|numeric',

@@ -174,12 +174,6 @@ input[type="radio"] {
     height: 0;
 }
 
-#instruction {
-    display: none;
-    font-size: 16px;
-    padding: 6px 11px 4px;
-}
-
 .image_variants {
     display: inline-block;
 }
@@ -798,6 +792,13 @@ input.material-icons {
     text-shadow: 0 0 3px black;
 }
 
+.steps {
+    box-shadow: 0 0 4px black;
+    display: block;
+    margin-bottom: 20px;
+    width: 220px;
+}
+
 input.success {
     color: #00bb00;
 }
@@ -847,10 +848,6 @@ input.success {
 
     .main_image {
         width: 60%;
-    }
-
-    #instruction {
-        display: inline-block;
     }
 
     div.list {

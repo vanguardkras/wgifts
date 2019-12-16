@@ -16,7 +16,7 @@ class CreateGiftListsTable extends Migration
         Schema::create('gift_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('domain', 30)->unique();
+            $table->string('domain', 30)->unique()->nullable();
             $table->string('title', 100);
             $table->unsignedBigInteger('background_id');
             $table->string('information', 1000)->nullable();

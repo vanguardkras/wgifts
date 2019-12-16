@@ -110,12 +110,13 @@ class RegisterController extends Controller
 
 
         $list->user_id = $user->id;
-        $list->domain = $session->domain;
         $list->title = $session->title;
         $list->background_id = $session->background_id;
         $list->information = $session->information;
         $list->date = $session->date;
         $list->comment_opt = $session->comment_opt;
+        $list->save();
+        $list->domain = 'id'.$list->id;
         $list->save();
 
         foreach ($session->gifts as $sgift) {

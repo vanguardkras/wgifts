@@ -1,25 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <button class="button_change" id="instruction">Инструкция</button>
+    Чтобы увидеть описание полей, наведите на <span class="help" help="Информация">?</span>
     <form action="/{{ Auth::check() ? 'lists' : 'create' }}" method="post">
         @csrf
         <table class="list_edit">
-            <tr>
-                <th>
-                    <label for="domain">Ссылка</label>
-                    <span class="help" help="{{ __('help.domain') }}">?</span>
-                </th>
-                <td>
-                    <input class="{{ $errors->has('domain') ? 'alert' : '' }}" id="domain" type="text" name="domain"
-                           value="{{ old('domain') ?? (session('created')->domain ?? '') }}"
-                           placeholder="vasha_ssilka"
-                           required>
-                    @error('domain')
-                    <span class="alert">{{ $message }}</span>
-                    @enderror
-                </td>
-            </tr>
             <tr>
                 <th>
                     <label for="title">Название</label>
