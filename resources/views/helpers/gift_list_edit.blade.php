@@ -4,7 +4,7 @@
         <td>{{ $loop->iteration }}.</td>
         <td>
             <input class="gift{{ $gift->picked ? ' success' : '' }}" type="text" name="name"
-                   value="{{ $gift->name }}"{{ $gift->picked ? ' disabled' : '' }}>
+                   value="{{ $gift->name }}"{{ $gift->picked ? ' disabled' : '' }} autocomplete="off">
         </td>
         @if ($gift->picked)
             <td></td>

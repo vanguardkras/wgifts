@@ -4,6 +4,6 @@
                title="Закрыть">
         <h2></h2>
         <button class="button add">Добавить</button>
-        <button class="button another">Другой</button>
+        <button class="button another">Ещё</button>
     </div>
 </div>

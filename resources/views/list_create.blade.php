@@ -8,12 +8,11 @@
             <tr>
                 <th>
                     <label for="title">Название</label>
-                    <span class="help" help="{{ __('help.title') }}">?</span>
                 </th>
                 <td>
                     <input class="{{ $errors->has('title') ? 'alert' : '' }}" id="title" type="text" name="title"
                            value="{{ old('title') ?? (session('created')->title ?? '') }}"
-                           placeholder="Свадьба Петровых"
+                           placeholder="Название мероприятия"
                            required>
                     @error('title')
                     <span class="alert">{{ $message }}</span>
@@ -23,7 +22,6 @@
             <tr>
                 <th>
                     <label for="date">Дата</label>
-                    <span class="help" help="{{ __('help.date') }}">?</span>
                 </th>
                 <td>
                     <input class="{{ $errors->has('date') ? 'alert' : '' }}" id="date" type="date" name="date"
@@ -37,7 +35,6 @@
             <tr>
                 <th>
                     <label for="background">Тема</label>
-                    <span class="help" help="{{ __('help.theme') }}">?</span>
                 </th>
                 <td>
                     @foreach($backgrounds as $background)
@@ -56,12 +53,13 @@
             <tr>
                 <th>
                     <label for="information">Описание</label>
-                    <span class="help" help="{{ __('help.information') }}">?</span>
                 </th>
                 <td>
                     <textarea class="{{ $errors->has('information') ? 'alert' : '' }}" id="information"
                               name="information"
-                              placeholder="У нас скоро свадьба, и мы хотели бы получить следующие подарки.">{{ old('information') ?? (session('created')->information ?? '') }}</textarea>
+                              placeholder="Вы можете добавить описание своего мероприятия. Оно также будет отображаться в Вашем списке.">
+                        {{ old('information') ?? (session('created')->information ?? '') }}
+                    </textarea>
                     @error('information')
                     <span class="alert">{{ $message }}</span>
                     @enderror

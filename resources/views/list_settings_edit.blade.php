@@ -15,7 +15,6 @@
             <tr>
                 <th>
                     <label for="domain">Ссылка</label>
-                    <span class="help" help="{{ __('help.domain') }}">?</span>
                 </th>
                 <td>
                     <input class="{{ $errors->has('domain') ? 'alert' : '' }}" type="text" name="domain"
@@ -28,7 +27,6 @@
             <tr>
                 <th>
                     <label for="title">Название</label>
-                    <span class="help" help="{{ __('help.title') }}">?</span>
                 </th>
                 <td>
                     <input class="{{ $errors->has('title') ? 'alert' : '' }}" type="text" name="title"
@@ -41,7 +39,6 @@
             <tr>
                 <th>
                     <label for="background">Тема</label>
-                    <span class="help" help="{{ __('help.theme') }}">?</span>
                 </th>
                 <td>
                     @foreach($backgrounds as $background)
@@ -59,7 +56,6 @@
             <tr>
                 <th>
                     <label for="information">Описание</label>
-                    <span class="help" help="{{ __('help.information') }}">?</span>
                 </th>
                 <td>
                     <textarea class="{{ $errors->has('date') ?? 'information' }}"

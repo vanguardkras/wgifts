@@ -179,6 +179,7 @@ input[type="radio"] {
 }
 
 .image_variants img {
+    background-color: white;
     border-radius: 4px;
     box-sizing: border-box;
     cursor: pointer;
@@ -189,10 +190,10 @@ input[type="radio"] {
 }
 
 [type=radio]:checked + div img {
-    filter: brightness(1);
     box-shadow: 0 0 3px 2px #fff;
-    width: 160px;
+    filter: brightness(1);
     height: 100px;
+    width: 160px;
 
 }
 
@@ -570,6 +571,10 @@ textarea {
 
 .save {
     margin-top: 20px;
+}
+
+.list h4 {
+    text-shadow: 0 0 3px #000;
 }
 
 .share {
