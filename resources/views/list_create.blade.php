@@ -57,9 +57,7 @@
                 <td>
                     <textarea class="{{ $errors->has('information') ? 'alert' : '' }}" id="information"
                               name="information"
-                              placeholder="Вы можете добавить описание своего мероприятия. Оно также будет отображаться в Вашем списке.">
-                        {{ old('information') ?? (session('created')->information ?? '') }}
-                    </textarea>
+                              placeholder="Вы можете добавить описание своего мероприятия. Оно также будет отображаться в Вашем списке.">{{ old('information') ?? (session('created')->information ?? '') }}</textarea>
                     @error('information')
                     <span class="alert">{{ $message }}</span>
                     @enderror
