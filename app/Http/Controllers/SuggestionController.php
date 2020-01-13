@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Suggestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SuggestionController extends Controller
 {
@@ -11,73 +12,50 @@ class SuggestionController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
-        $suggestions = Suggestion::orderBy('gift')->paginate(100);
+        if (Gate::allows('admin')) {
+            $suggestions = Suggestion::orderBy('gift')->paginate(100);
 
-        return view('admin.suggestions', compact('suggestions'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+            return view('admin.suggestions', compact('suggestions'));
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $suggestion = new Suggestion;
-        $suggestion->gift = $request->gift;
-        $suggestion->save();
+        if (Gate::allows('admin')) {
+            $suggestion = new Suggestion;
+            $suggestion->gift = $request->gift;
+            $suggestion->gift_ru = $request->gift_ru;
+            $suggestion->save();
 
-        return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Suggestion  $suggestion
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Suggestion $suggestion)
-    {
-        return $suggestion->gift;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Suggestion  $suggestion
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Suggestion $suggestion)
-    {
-        //
+            return back();
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Suggestion  $suggestion
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Suggestion $suggestion
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Suggestion $suggestion)
     {
-        $suggestion->gift = $request->gift;
-        $suggestion->save();
-        return back();
+        if (Gate::allows('admin')) {
+            $suggestion->gift = $request->gift;
+            $suggestion->gift_ru = $request->gift_ru;
+            $suggestion->save();
+            return back();
+        }
     }
 
     /**
@@ -89,8 +67,10 @@ class SuggestionController extends Controller
      */
     public function destroy(Suggestion $suggestion)
     {
-        $suggestion->delete();
-        return back();
+        if (Gate::allows('admin')) {
+            $suggestion->delete();
+            return back();
+        }
     }
 
     /**
@@ -100,6 +80,8 @@ class SuggestionController extends Controller
      */
     public function random()
     {
-        return Suggestion::inRandomOrder()->first()->gift;
+        $gift = app()->getLocale() === 'ru' ? 'gift_ru' : 'gift';
+
+        return Suggestion::inRandomOrder()->first()->$gift;
     }
 }

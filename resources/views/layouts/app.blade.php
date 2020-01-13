@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta', '')
 
-    <title>Выбор подарков {{ config('app.name') }}</title>
+    <title>@lang('app.title') {{ config('app.name') }}</title>
 
     {{-- Styles --}}
     <link href="{{ mix('/css/main.css') }}" rel="stylesheet">

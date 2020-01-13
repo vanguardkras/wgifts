@@ -16,7 +16,7 @@
         </div>
 
         <div>
-            <label for="password">Новый пароль</label>
+            <label for="password">@lang('passwords.new_pass_label')</label>
             <input id="password" type="password" name="password" required>
             @error('password')
             {{ $message }}
@@ -24,13 +24,13 @@
         </div>
 
         <div>
-            <label for="password-confirm">Подтвердите пароль</label>
+            <label for="password-confirm">@lang('passwords.pass_ack_label')</label>
             <input id="password-confirm" type="password" name="password_confirmation" required>
         </div>
 
         <div class="center_content">
             <button type="submit" class="button">
-                Сбросить пароль
+                @lang('passwords.button_new_pass')
             </button>
         </div>
     </form>

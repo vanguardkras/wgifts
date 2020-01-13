@@ -3,7 +3,7 @@
         <input id="close_suggestion" class="material-icons" type="button" value="close"
                title="Закрыть">
         <h2></h2>
-        <button class="button add">Добавить</button>
-        <button class="button another">Ещё</button>
+        <button class="button add">@lang('buttons.add')</button>
+        <button class="button another">@lang('buttons.more')</button>
     </div>
 </div>

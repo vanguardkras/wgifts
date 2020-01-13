@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('meta')
-    <meta name="description" content="Сайт для создания списка подарков к празднику, чтобы потом поделиться им
-со своими знакомыми">
+    <meta name="description" content="@lang('info.meta')">
 
 @endsection
 
@@ -12,33 +11,22 @@
             <img src="/images/background.webp" alt="bg">
         </div>
         <div class="information">
-            <h1>Закажи себе подарок</h1>
+            <h1>@lang('info.header')</h1>
             <p class="text">
-                <b>У Вас скоро праздник?</b><br>
-                На этот раз вы сможете получить, что хотите!<br>
-                Расскажите всем о своих пожеланиях.<br>
-                Для этого нужно выполнить три простых действия.<br>
+                @lang('info.text')
             </p>
             <ol>
-                <li>
-                    Создате свой мини-сайт со списком подарков
-                </li>
-                <li>
-                    Поделитесь ссылкой с гостями
-                </li>
-                <li>Ждите нужных подарков на праздник!</li>
+                @lang('info.actions')
             </ol>
             <p class="text">
-                Посмотреть пример готового списка можно здесь: <a href="https://podarimne.site/test" target="_blank">пример</a>
+                @lang('info.example_to_see') <a href="https://podarimne.site/test" target="_blank">@lang('info.example')</a>
             </p>
-            <p>
-                Попробуйте наш сервис прямо сейчас:
-            </p>
+            <p>@lang('info.try_now')</p>
             <div class="button_holder">
-                <a class="button" href="/list/create">Создать список</a>
+                <a class="button" href="/list/create">@lang('buttons.create_list')</a>
             </div>
             <p class="tiny_link">
-                <a href="mailto:championing@mail.ru">Остались вопросы? Свяжитесь с нами.</a>
+                <a href="mailto:championing@mail.ru">@lang('info.any_questions')</a>
             </p>
         </div>
     </div>

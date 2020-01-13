@@ -16,11 +16,11 @@
         @else
             <td>
                 <input class="material-icons edit" type="button" value="edit"
-                       title="Изменить">
+                       title="@lang('buttons.modify')">
             </td>
             <td>
                 <input class="material-icons delete" type="button"
-                       value="delete_forever" title="Удалить">
+                       value="delete_forever" title="@lang('buttons.delete')">
             </td>
         @endif
     </tr>

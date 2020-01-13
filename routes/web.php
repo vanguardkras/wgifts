@@ -22,7 +22,12 @@ Route::patch('admin/edit_background/{background}', 'Admin\AdminController@editBa
 Route::patch('admin/update_price', 'Admin\AdminController@updatePrice');
 Route::patch('admin/update_payment', 'Admin\AdminController@updatePayment');
 Route::delete('admin/delete_background/{background}', 'Admin\AdminController@deleteBackground');
-Route::resource('admin/suggestions', 'SuggestionController');
+Route::resource('admin/suggestions', 'SuggestionController')->only([
+    'index',
+    'store',
+    'update',
+    'destroy',
+]);
 Route::get('suggestion', 'SuggestionController@random');
 
 /** Authentication */

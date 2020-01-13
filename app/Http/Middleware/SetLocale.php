@@ -16,7 +16,7 @@ class SetLocale
     public function handle($request, Closure $next)
     {
         if ($request->getPreferredLanguage() === 'ru_RU') {
-            //app()->setLocale('ru');
+            app()->setLocale('ru');
         }
 
         return $next($request);

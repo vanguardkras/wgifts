@@ -2,10 +2,10 @@
 
 @section('content')
     @include('helpers.suggestion')
-    <a href="{{ config('app.url').'/lists/'.($giftList->id).'/edit_list' }}">К редактированию списка подарков</a>
+    <a href="{{ config('app.url').'/lists/'.($giftList->id).'/edit_list' }}">@lang('info.back_to_list_edit')</a>
     @isPaymentRequired
     @if(!$giftList->activated)
-        <br><span class="alert">Не активирован</span>
+        <br><span class="alert">@lang('info.not_active')</span>
     @endif
     @endisPaymentRequired
     <form action="/lists/{{ $giftList->id }}" method="post">
@@ -14,7 +14,7 @@
         <table class="list_edit">
             <tr>
                 <th>
-                    <label for="domain">Ссылка</label>
+                    <label for="domain">@lang('info.link')</label>
                 </th>
                 <td>
                     <input class="{{ $errors->has('domain') ? 'alert' : '' }}" type="text" name="domain"
@@ -26,7 +26,7 @@
             </tr>
             <tr>
                 <th>
-                    <label for="title">Название</label>
+                    <label for="title">@lang('info.title')</label>
                 </th>
                 <td>
                     <input class="{{ $errors->has('title') ? 'alert' : '' }}" type="text" name="title"
@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <th>
-                    <label for="background">Тема</label>
+                    <label for="background">@lang('info.theme')</label>
                 </th>
                 <td>
                     @foreach($backgrounds as $background)
@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <th>
-                    <label for="information">Описание</label>
+                    <label for="information">@lang('info.description')</label>
                 </th>
                 <td>
                     <textarea class="{{ $errors->has('date') ?? 'information' }}"
@@ -69,7 +69,7 @@
         <table class="list_edit_save">
             <tr>
                 <th>
-                    Включить коментарии
+                    @lang('info.turn_on_comments')
                     <span class="help" help="{{ __('help.comment') }}">?</span>
                 </th>
                 <td style="border-bottom: none">
@@ -80,7 +80,7 @@
                     </label>
                 </td>
                 <td>
-                    <input class="button_change" type="submit" value="Изменить">
+                    <input class="button_change" type="submit" value="@lang('buttons.modify')">
                 </td>
             </tr>
         </table>

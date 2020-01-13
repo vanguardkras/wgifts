@@ -19,7 +19,7 @@
 
             <div class="center_content">
                 <button class="button send_link" type="submit">
-                    Отправить ссылку сброса пароля
+                    @lang('passwords.button_reset')
                 </button>
             </div>
     </form>

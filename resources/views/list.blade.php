@@ -5,7 +5,7 @@
         </script>
     @endif
     <div>
-        <img src="{{ asset('storage/backgrounds/'.\App\Background::find($list->background_id)->file) }}" alt="фон">
+        <img src="{{ asset('storage/backgrounds/'.\App\Background::find($list->background_id)->file) }}" alt="background">
     </div>
     <h1>{{ $list->title }}</h1>
     <h2>{{ date('d.m.Y', strtotime($list->date)) }}</h2>

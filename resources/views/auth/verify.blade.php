@@ -4,15 +4,14 @@
 
     @if (session('resent'))
         <div>
-            Ссылка для подтверждения отправлена на ваш почтовый ящик.
+            @lang('A fresh verification link has been sent to your email address.')
         </div>
     @endif
     <div>
-        Перед продолжением, пожалуйста, проверьте свою почту.
-        Если вы не получили сообщение,
+        @lang('Before proceeding, please check your email for a verification link.')
         <form method="POST" action="{{ route('verification.resend') }}">
             @csrf
-            <button class="button_change" type="submit">щелкните здесь, чтобы повторить отправку</button>.
+            <button class="button_change" type="submit">@lang('click here to request another')</button>.
         </form>
     </div>
 @endsection
