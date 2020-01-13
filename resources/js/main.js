@@ -27,7 +27,10 @@ if (typeof no_action === 'undefined') {
                         if (this.responseText === 'chosen') {
                             let error = document.createElement('div');
                             error.className = 'error';
-                            error.innerHTML = '<div>Вы уже выбрали подарок!</div>';
+                            let message = window.navigator.language === 'ru-RU' ?
+                                'Вы уже выбрали подарок!' :
+                                'You have already picked a gift!';
+                            error.innerHTML = '<div>' + message + '</div>';
                             document.body.appendChild(error);
                             error.addEventListener('click', function () {
                                 this.remove();
